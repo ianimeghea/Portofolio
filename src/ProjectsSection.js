@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// This component can replace your current projects section
+
+
 const ProjectsSection = () => {
   const [expandedProject, setExpandedProject] = useState(null);
 
-  // Individual project data - you can edit these separately
   const projects = [
     {
       id: 1,
@@ -46,10 +46,17 @@ const ProjectsSection = () => {
       description: "Personal portfolio website with animated components, responsive design and interactive elements. Features a unique library shelf design for project display.",
       projectLink: "#",
       sourceLink: "https://github.com/ianimeghea/portfolio"
-    }
+    },
+    {
+        id: 6,
+        title: "LLM",
+        technologies: "Python, NumPy",
+        description: "Small scale LLM project for my Machine Learning Course, developed in python using Bigram model and character level tokenizer. Generates authentic-like Shakespeare.",
+        projectLink: "#",
+        sourceLink: "https://github.com/ianimeghea/portfolio"
+      }
   ];
 
-  // Handle mouse enter/leave events
   const handleMouseEnter = (id) => setExpandedProject(id);
   const handleMouseLeave = () => setExpandedProject(null);
 

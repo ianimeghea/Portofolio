@@ -174,39 +174,60 @@ function App() {
       </section>
 
       <section
-        id="experience"
-        className="experience-section section"
-        ref={(ref) => registerSection('experience', ref)}
-      >
-        <motion.h2
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Experience
-        </motion.h2>
-        <div className="timeline">
-          <motion.div
-            className="timeline-item"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="timeline-content">
-              <h3>Machine Learning Research Assistant</h3>
-              <h4>Vrije University Amsterdam, NL</h4>
-              <p className="date">Sep 2024 – Present</p>
-              <ul>
-                <li>Exploring supervised and unsupervised learning techniques for interpreting football data at large scales</li>
-                <li>Working on Agglomerative Hierarchical Clustering model for automatically categorizing goals</li>
-              </ul>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+  id="experience"
+  className="experience-section section"
+  ref={(ref) => registerSection('experience', ref)}
+>
+  <motion.h2
+    className="section-title"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+  >
+    Experience
+  </motion.h2>
+  <div className="timeline">
+    {/* Machine Learning Research Assistant */}
+    <motion.div
+      className="timeline-item"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7 }}
+    >
+      <div className="timeline-content">
+        <h3>Machine Learning Research Assistant</h3>
+        <h4>Vrije University Amsterdam, NL</h4>
+        <p className="date">Sep 2024 – Present</p>
+        <ul>
+          <li>Exploring supervised and unsupervised learning techniques for interpreting football data at large scales</li>
+          <li>Working on Agglomerative Hierarchical Clustering model for automatically categorizing goals</li>
+        </ul>
+      </div>
+    </motion.div>
+
+    {/* Teaching Assistant - Human-Computer Interaction */}
+    <motion.div
+      className="timeline-item"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, delay: 0.2 }}
+    >
+      <div className="timeline-content">
+        <h3>Teaching Assistant - Human-Computer Interaction</h3>
+        <h4>Vrije University Amsterdam, NL</h4>
+        <p className="date">Apr 2025 – Jun 2025</p>
+        <ul>
+          <li>Assisting students in learning fundamental concepts of Human-Computer Interaction (HCI)</li>
+          <li>Providing guidance on building conversational agents and user-centered design principles</li>
+        </ul>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
 
       <section
         id="projects"

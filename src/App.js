@@ -225,17 +225,34 @@ function App() {
         </ul>
       </div>
     </motion.div>
+    <motion.div
+      className="timeline-item"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7 }}
+    >
+      <div className="timeline-content">
+        <h3>ML Engineering Intern</h3>
+        <h4>&Wider, NL</h4>
+        <p className="date">May 2025 – Aug 2025</p>
+        <ul>
+          <li>Building a ML pipeline for Ethical Supply Chain tracking for clients such as Nestle, Pepsico, BMW & more.</li>
+          <li>Using ML to boost worker's voice in the global supply chains, ensuring less human rights violations and safer working conditions for workers globally.</li>
+        </ul>
+      </div>
+    </motion.div>
   </div>
 </section>
 
 
-      <section
-        id="projects"
-        className="projects-section section"
-        ref={(ref) => registerSection('projects', ref)}
-      >
-        <ProjectsSection />
-      </section>
+  <section
+    id="projects"
+    className="projects-section section"
+    ref={(ref) => registerSection('projects', ref)}
+  >
+    <ProjectsSection />
+  </section>
 
       <section
         id="skills"
@@ -337,7 +354,7 @@ function App() {
           >
             <h3>Libraries</h3>
             <div className="skill-tags">
-              {['pandas', 'NumPy', 'Matplotlib', 'PyTorch', 'SKlearn'].map((skill, index) => (
+              {['pandas', 'NumPy', 'Matplotlib', 'PyTorch', 'SKlearn', "Keras"].map((skill, index) => (
                 <motion.span
                   key={skill}
                   className="skill-tag"

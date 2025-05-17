@@ -25,7 +25,6 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-color);
-  color: var(--text-color);
   line-height: 1.6;
 }
 
@@ -34,15 +33,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
-a {
+.social-link  {
   text-decoration: none;
-  color: var(--primary-color);
   transition: var(--transition);
 }
 
-a:hover {
-  color: var(--primary-dark);
-}
 
 .app {
   display: flex;
@@ -84,6 +79,7 @@ a:hover {
   display: flex;
   list-style: none;
   gap: 2rem;
+ 
 }
 
 .nav-links a {
@@ -94,6 +90,7 @@ a:hover {
   letter-spacing: 1px;
   position: relative;
   padding: 0.5rem 0;
+  text-decoration: none;
 }
 
 .nav-links a::after {
@@ -173,6 +170,7 @@ a:hover {
   border-radius: var(--border-radius);
   font-weight: 500;
   transition: var(--transition);
+  color: black;
 }
 
 .social-link:hover {
@@ -318,59 +316,6 @@ a:hover {
 
 .timeline-content li {
   margin-bottom: 0.5rem;
-}
-
-/* Projects section */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.project-card {
-  background-color: var(--card-bg);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  height: 100%;
-}
-
-.project-content {
-  padding: 1.5rem;
-}
-
-.project-card h3 {
-  color: var(--primary-color);
-}
-
-.project-tech {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.project-description {
-  margin-bottom: 1.5rem;
-}
-
-.project-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.project-link {
-  padding: 0.5rem 1rem;
-  background-color: var(--primary-color);
-  color: white;
-  border-radius: var(--border-radius);
-  font-size: 0.9rem;
-  transition: var(--transition);
-}
-
-.project-link:hover {
-  background-color: var(--primary-dark);
-  color: white;
 }
 
 /* Skills section */
@@ -522,6 +467,7 @@ a:hover {
 .footer-links a {
   color: white;
   opacity: 0.8;
+  text-decoration: none;
 }
 
 .footer-links a:hover {
@@ -591,14 +537,7 @@ a:hover {
   .name-title {
     font-size: 2.5rem;
   }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
 }
-/* Add these styles to your App.css file */
-
-/* Add these styles to your App.css file */
 
 /* Library shelf styling */
 .library-shelf {
@@ -612,7 +551,7 @@ a:hover {
 
 .book {
   height: 400px;
-  width: 80px; /* Increased width for more text space */
+  width: 80px;
   position: relative;
   transition: width 0.3s ease, transform 0.3s ease;
   border-radius: 3px 0 0 3px;
@@ -628,14 +567,14 @@ a:hover {
 .book:nth-child(4) { background-color: #8e99f3; }
 .book:nth-child(5) { background-color: #3949ab; }
 .book:nth-child(6) { background-color: #5c6bc0; }
-
+.book:nth-child(7) { background-color: #42a5f5; }
 
 .book-spine {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 80px; /* Match new book width */
+  width: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -667,9 +606,8 @@ a:hover {
   overflow-y: auto;
 }
 
-/* Ensure the fade-in happens only after the book is fully expanded */
 .book.expanded {
-  width: 300px; /* Expand width */
+  width: 300px;
   transition: width 0.3s ease, transform 0.3s ease;
 }
 
@@ -679,7 +617,6 @@ a:hover {
   pointer-events: all;
 }
 
-/* Smooth hover effect */
 .book:hover {
   transform: translateY(-10px) rotateY(-10deg);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
@@ -716,20 +653,20 @@ a:hover {
 }
 
 .book .project-link {
+  text-decoration: none;
   padding: 8px 12px;
-  background-color: var(--primary-color);
-  color: white;
+  background-color: black !important;
+  color: white !important;
   border-radius: var(--border-radius);
   font-size: 0.85rem;
-  transition: var(--transition);
   display: inline-block;
   margin-top: 10px;
-  margin-left: 65px;
 }
 
 .book .project-link:hover {
-  background-color: var(--primary-dark);
-  color: white;
+  background-color: #333;
+  transform: translateY(-2px);
+  color: white !important;
 }
 
 /* Mobile responsiveness */
@@ -739,24 +676,69 @@ a:hover {
     align-items: center;
     height: auto;
     gap: 20px;
+    padding: 30px 10px;
   }
   
   .book {
-    width: 90%;
-    height: 60px;
+    width: 100%;
+    height: 80px;
     max-width: 400px;
+    border-radius: 5px;
+    transform-origin: center;
+    margin-bottom: 10px;
   }
   
   .book-spine {
     width: 100%;
-    height: 60px;
+    height: 80px;
     writing-mode: horizontal-tb;
     transform: none;
+    text-align: center;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .book.expanded {
-    height: auto; /* Adjust height to fit content */
-    width: 90%;
-    min-height: 300px; /* Ensures enough space for text */
+    height: auto;
+    width: 100%;
+    min-height: 300px;
+    max-width: 400px;
+    transform: none;
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .book:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .book.expanded:hover {
+    transform: translateY(-5px);
+  }
+  
+  .book-content {
+    padding: 20px 15px;
+  }
+}
+
+/* Small phone screens */
+@media (max-width: 480px) {
+  .book {
+    height: 70px;
+  }
+  
+  .book-spine {
+    height: 70px;
+    font-size: 0.9rem;
+  }
+  
+  .book.expanded {
+    min-height: 280px;
+  }
+  
+  .book .project-description {
+    font-size: 0.9rem;
   }
 }

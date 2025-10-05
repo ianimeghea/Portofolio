@@ -242,6 +242,23 @@ function App() {
         </ul>
       </div>
     </motion.div>
+    <motion.div
+      className="timeline-item"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7 }}
+    >
+      <div className="timeline-content">
+        <h3>Data Engineering Intern</h3>
+        <h4>Bunq, NL</h4>
+        <p className="date">Sep 2025 – Mar 2026</p>
+        <ul>
+          <li>Building data pipelines for real-time transaction monitoring, fraud detection, and risk assessment.</li>
+          <li>Collaborating with data scientists to optimize machine learning models for payment processing and customer support.</li>
+        </ul>
+      </div>
+    </motion.div>
   </div>
 </section>
 

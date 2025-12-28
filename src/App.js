@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import './App.css';
 import ProjectsSection from './ProjectsSection';
 
@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 150;
       
       for (const section of navLinks) {
         const element = sectionsRef.current[section];
@@ -35,39 +35,54 @@ function App() {
     }
   };
 
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+    }
+  };
+
   return (
     <div className="app">
       <nav className="navbar">
         <motion.div
           className="logo"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
           IM
         </motion.div>
         <motion.ul
           className="nav-links"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
         >
           {navLinks.map((link, index) => (
             <motion.li
               key={link}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 * index }}
+              variants={fadeInUp}
             >
               <a
                 href={`#${link}`}
                 className={activeSection === link ? 'active' : ''}
                 onClick={(e) => {
                   e.preventDefault();
-                  sectionsRef.current[link].scrollIntoView({ behavior: 'smooth' });
+                  sectionsRef.current[link]?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                {link.charAt(0).toUpperCase() + link.slice(1)}
+                {link}
               </a>
             </motion.li>
           ))}
@@ -81,26 +96,26 @@ function App() {
       >
         <div className="hero-content">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
             className="name-title"
           >
-            <span className="typing-animation">Iani Meghea</span>
+            <span className="typing-animation">IANI MEGHEA</span>
           </motion.h1>
           <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="subtitle"
           >
-            Artificial Intelligence Student & Machine Leaning Developer
+            Artificial Intelligence Student & Machine Learning Developer
           </motion.h2>
           <motion.div
             className="hero-links"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.2 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
           >
             <a href="https://github.com/ianimeghea" target="_blank" rel="noopener noreferrer" className="social-link">
               GitHub
@@ -115,8 +130,8 @@ function App() {
         </div>
         <div className="scroll-indicator">
           <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
           >
             ↓
           </motion.div>
@@ -134,8 +149,9 @@ function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          data-number="01"
         >
-          About Me
+          About
         </motion.h2>
         <motion.div
           className="about-content"
@@ -148,7 +164,7 @@ function App() {
             <h3>Education</h3>
             <motion.div
               className="education-item"
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
@@ -160,10 +176,10 @@ function App() {
             </motion.div>
             <motion.div
               className="education-item"
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
             >
               <h4>National College of Informatics "Tudor Vianu" Bucharest, RO</h4>
               <p className="degree">Mathematics-Informatics Profile</p>
@@ -174,102 +190,102 @@ function App() {
       </section>
 
       <section
-  id="experience"
-  className="experience-section section"
-  ref={(ref) => registerSection('experience', ref)}
->
-  <motion.h2
-    className="section-title"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-  >
-    Experience
-  </motion.h2>
-  <div className="timeline">
-    {/* Machine Learning Research Assistant */}
-    <motion.div
-      className="timeline-item"
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7 }}
-    >
-      <div className="timeline-content">
-        <h3>Machine Learning Research Assistant</h3>
-        <h4>Vrije University Amsterdam, NL</h4>
-        <p className="date">Sep 2024 – Present</p>
-        <ul>
-          <li>Exploring supervised and unsupervised learning techniques for interpreting football data at large scales</li>
-          <li>Working on Agglomerative Hierarchical Clustering model for automatically categorizing goals</li>
-        </ul>
-      </div>
-    </motion.div>
+        id="experience"
+        className="experience-section section"
+        ref={(ref) => registerSection('experience', ref)}
+      >
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          data-number="02"
+        >
+          Experience
+        </motion.h2>
+        <div className="timeline">
+          <motion.div
+            className="timeline-item"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="timeline-content">
+              <h3>Data Engineering Intern</h3>
+              <h4>Bunq, NL</h4>
+              <p className="date">Sep 2025 – Mar 2026</p>
+              <ul>
+                <li>Building data pipelines for real-time transaction monitoring, fraud detection, and risk assessment</li>
+                <li>Collaborating with data scientists to optimize machine learning models for payment processing and customer support</li>
+              </ul>
+            </div>
+          </motion.div>
 
-    {/* Teaching Assistant - Human-Computer Interaction */}
-    <motion.div
-      className="timeline-item"
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, delay: 0.2 }}
-    >
-      <div className="timeline-content">
-        <h3>Teaching Assistant - Human-Computer Interaction</h3>
-        <h4>Vrije University Amsterdam, NL</h4>
-        <p className="date">Apr 2025 – Jun 2025</p>
-        <ul>
-          <li>Assisting students in learning fundamental concepts of Human-Computer Interaction (HCI)</li>
-          <li>Providing guidance on building conversational agents and user-centered design principles</li>
-        </ul>
-      </div>
-    </motion.div>
-    <motion.div
-      className="timeline-item"
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7 }}
-    >
-      <div className="timeline-content">
-        <h3>ML Engineering Intern</h3>
-        <h4>&Wider, NL</h4>
-        <p className="date">May 2025 – Aug 2025</p>
-        <ul>
-          <li>Building a ML pipeline for Ethical Supply Chain tracking for clients such as Nestle, Pepsico, BMW & more.</li>
-          <li>Using ML to boost worker's voice in the global supply chains, ensuring less human rights violations and safer working conditions for workers globally.</li>
-        </ul>
-      </div>
-    </motion.div>
-    <motion.div
-      className="timeline-item"
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7 }}
-    >
-      <div className="timeline-content">
-        <h3>Data Engineering Intern</h3>
-        <h4>Bunq, NL</h4>
-        <p className="date">Sep 2025 – Mar 2026</p>
-        <ul>
-          <li>Building data pipelines for real-time transaction monitoring, fraud detection, and risk assessment.</li>
-          <li>Collaborating with data scientists to optimize machine learning models for payment processing and customer support.</li>
-        </ul>
-      </div>
-    </motion.div>
-  </div>
-</section>
+          <motion.div
+            className="timeline-item"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <div className="timeline-content">
+              <h3>ML Engineering Intern</h3>
+              <h4>&Wider, NL</h4>
+              <p className="date">May 2025 – Aug 2025</p>
+              <ul>
+                <li>Building a ML pipeline for Ethical Supply Chain tracking for clients such as Nestle, Pepsico, BMW & more</li>
+                <li>Using ML to boost worker's voice in the global supply chains, ensuring less human rights violations and safer working conditions</li>
+              </ul>
+            </div>
+          </motion.div>
 
+          <motion.div
+            className="timeline-item"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="timeline-content">
+              <h3>Teaching Assistant - Human-Computer Interaction</h3>
+              <h4>Vrije University Amsterdam, NL</h4>
+              <p className="date">Apr 2025 – Jun 2025</p>
+              <ul>
+                <li>Assisting students in learning fundamental concepts of Human-Computer Interaction (HCI)</li>
+                <li>Providing guidance on building conversational agents and user-centered design principles</li>
+              </ul>
+            </div>
+          </motion.div>
 
-  <section
-    id="projects"
-    className="projects-section section"
-    ref={(ref) => registerSection('projects', ref)}
-  >
-    <ProjectsSection />
-  </section>
+          <motion.div
+            className="timeline-item"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="timeline-content">
+              <h3>Machine Learning Research Assistant</h3>
+              <h4>Vrije University Amsterdam, NL</h4>
+              <p className="date">Sep 2024 – Present</p>
+              <ul>
+                <li>Exploring supervised and unsupervised learning techniques for interpreting football data at large scales</li>
+                <li>Working on Agglomerative Hierarchical Clustering model for automatically categorizing goals</li>
+              </ul>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section
+        id="projects"
+        className="projects-section section"
+        ref={(ref) => registerSection('projects', ref)}
+      >
+        <ProjectsSection />
+      </section>
 
       <section
         id="skills"
@@ -282,8 +298,9 @@ function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          data-number="04"
         >
-          Technical Skills
+          Skills
         </motion.h2>
         
         <div className="skills-container">
@@ -300,11 +317,34 @@ function App() {
                 <motion.span
                   key={skill}
                   className="skill-tag"
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.05 * index }}
-                  whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                >
+                  {skill}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+          
+          <motion.div
+            className="skill-category"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <h3>Frameworks</h3>
+            <div className="skill-tags">
+              {['React', 'Flask', 'Material-UI', 'FastAPI', 'GraphDB'].map((skill, index) => (
+                <motion.span
+                  key={skill}
+                  className="skill-tag"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.05 * index }}
                 >
                   {skill}
                 </motion.span>
@@ -319,42 +359,16 @@ function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3>Frameworks</h3>
-            <div className="skill-tags">
-              {['React', 'Flask', 'Material-UI', 'FastAPI', 'GraphDB'].map((skill, index) => (
-                <motion.span
-                  key={skill}
-                  className="skill-tag"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: 0.05 * index }}
-                  whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
-          
-          <motion.div
-            className="skill-category"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
             <h3>Developer Tools</h3>
             <div className="skill-tags">
               {['Git', 'Docker', 'VS Code', 'Visual Studio', 'PyCharm', 'Eclipse'].map((skill, index) => (
                 <motion.span
                   key={skill}
                   className="skill-tag"
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.05 * index }}
-                  whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                 >
                   {skill}
                 </motion.span>
@@ -367,19 +381,18 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
             <h3>Libraries</h3>
             <div className="skill-tags">
-              {['pandas', 'NumPy', 'Matplotlib', 'PyTorch', 'SKlearn', "Keras"].map((skill, index) => (
+              {['pandas', 'NumPy', 'Matplotlib', 'PyTorch', 'SKlearn', 'Keras'].map((skill, index) => (
                 <motion.span
                   key={skill}
                   className="skill-tag"
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.05 * index }}
-                  whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                 >
                   {skill}
                 </motion.span>
@@ -400,6 +413,7 @@ function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          data-number="05"
         >
           Contact
         </motion.h2>
@@ -411,52 +425,71 @@ function App() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <div className="contact-info">
-            <div className="contact-item">
-              <div className="contact-icon">✉️</div>
+            <motion.div 
+              className="contact-item"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+            >
+              <div className="contact-icon">✉</div>
               <div className="contact-text">
                 <h3>Email</h3>
                 <p>i.meghea@student.vu.nl</p>
               </div>
-            </div>
-            <div className="contact-item">
-              <div className="contact-icon">📱</div>
+            </motion.div>
+            <motion.div 
+              className="contact-item"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+            >
+              <div className="contact-icon">☎</div>
               <div className="contact-text">
                 <h3>Phone</h3>
                 <p>+40747074705</p>
               </div>
-            </div>
-            <div className="contact-item">
-              <div className="contact-icon">💼</div>
+            </motion.div>
+            <motion.div 
+              className="contact-item"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+            >
+              <div className="contact-icon">◈</div>
               <div className="contact-text">
                 <h3>LinkedIn</h3>
-                <p><a href="https://www.linkedin.com/in/iani-meghea-218a56263/" target="_blank" rel="noopener noreferrer">iani-meghea-218a56263</a></p>
+                <p><a href="https://www.linkedin.com/in/iani-meghea-218a56263/" target="_blank" rel="noopener noreferrer">iani-meghea</a></p>
               </div>
-            </div>
+            </motion.div>
           </div>
           <motion.form
             className="contact-form"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            onSubmit={(e) => e.preventDefault()}
           >
             <div className="form-group">
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" required />
+              <input type="text" id="name" name="name" placeholder="Your name" required />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" required />
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
             </div>
             <div className="form-group">
               <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
             </div>
             <motion.button
               type="submit"
               className="submit-btn"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Send Message
             </motion.button>
@@ -466,7 +499,7 @@ function App() {
 
       <footer className="footer">
         <div className="footer-content">
-          <p>© {new Date().getFullYear()} Iani Meghea. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Iani Meghea — All rights reserved</p>
           <div className="footer-links">
             <a href="https://github.com/ianimeghea" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://www.linkedin.com/in/iani-meghea-218a56263/" target="_blank" rel="noopener noreferrer">LinkedIn</a>

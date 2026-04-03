@@ -66,6 +66,30 @@ const ProjectsSection = () => {
       description: "Book tracking, rating and favoriting platform with a python based recommender system, fully hosted.",
       projectLink: "#",
       sourceLink: "https://github.com/ianimeghea/Bookmarked"
+    },
+    {
+      id: 9,
+      title: "Pathfinder",
+      technologies: "React • Python • Flask • CSS",
+      description: "Web app for in-depth alumni search of prospective universities. Prospective students can look up alumni from any university, explore their career trajectories, approximate salaries, and position history — then connect with them directly on LinkedIn.",
+      projectLink: "#",
+      sourceLink: "https://github.com/ianimeghea/pathfinder"
+    },
+    {
+      id: 10,
+      title: "Receipt Vault",
+      technologies: "Swift • SwiftUI • SwiftData • Vision",
+      description: "Offline-first iOS app for freelancers and small business owners to scan, store and manage receipts and invoices. On-device OCR auto-extracts vendor, amount, VAT, and date. Supports tagging, project organization, and CSV/PDF/ZIP export — zero third-party dependencies.",
+      projectLink: "#",
+      sourceLink: "https://github.com/ianimeghea/receiptvault"
+    },
+    {
+      id: 11,
+      title: "Hobi",
+      technologies: "Swift • SwiftUI • SwiftData • Swift Charts",
+      description: "Elegant iOS hobby tracker with a built-in session timer, weekly goal setting, mood logging, photo attachments, and streak tracking. Features rich analytics with native Swift Charts, a warm dark-theme UI, and haptic feedback throughout.",
+      projectLink: "#",
+      sourceLink: "https://github.com/ianimeghea/hobiapp"
     }
   ];
 

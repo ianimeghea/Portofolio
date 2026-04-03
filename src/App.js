@@ -213,6 +213,24 @@ function App() {
             transition={{ duration: 0.6 }}
           >
             <div className="timeline-content">
+              <h3>Machine Learning Engineer <span className="current-badge">Current</span></h3>
+              <h4>Bunq, NL</h4>
+              <p className="date">Apr 2026 – Present</p>
+              <ul>
+                <li>Building proprietary NLP models to replace out-of-the-box embedding and text generation solutions with fully in-house alternatives</li>
+                <li>Developing a complex internal benchmarking platform for all ML models, integrated into CI/CD and continuous training pipelines</li>
+              </ul>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="timeline-item"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+          >
+            <div className="timeline-content">
               <h3>Data Engineering Intern</h3>
               <h4>Bunq, NL</h4>
               <p className="date">Sep 2025 – Mar 2026</p>
@@ -228,7 +246,7 @@ function App() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
           >
             <div className="timeline-content">
               <h3>ML Engineering Intern</h3>
@@ -246,7 +264,7 @@ function App() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
           >
             <div className="timeline-content">
               <h3>Teaching Assistant - Human-Computer Interaction</h3>
@@ -264,7 +282,7 @@ function App() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
           >
             <div className="timeline-content">
               <h3>Machine Learning Research Assistant</h3>
@@ -337,7 +355,7 @@ function App() {
           >
             <h3>Frameworks</h3>
             <div className="skill-tags">
-              {['React', 'Flask', 'Material-UI', 'FastAPI', 'GraphDB'].map((skill, index) => (
+              {['Airflow', 'Redshift / S3', 'Amazon Sagemaker', 'React', 'Flask', 'Material-UI', 'FastAPI', 'GraphDB'].map((skill, index) => (
                 <motion.span
                   key={skill}
                   className="skill-tag"
@@ -361,7 +379,7 @@ function App() {
           >
             <h3>Developer Tools</h3>
             <div className="skill-tags">
-              {['Git', 'Docker', 'VS Code', 'Visual Studio', 'PyCharm', 'Eclipse'].map((skill, index) => (
+              {['Git', 'Docker', 'VS Code', 'Visual Studio', 'PyCharm', 'Eclipse', 'AWS'].map((skill, index) => (
                 <motion.span
                   key={skill}
                   className="skill-tag"
